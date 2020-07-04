@@ -2,8 +2,8 @@ import {Column, Entity, PrimaryColumn, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn({type: "int"})
-  id: number;
+  @PrimaryColumn({type: 'varchar', length: 36 })
+  id: string;
 
   @Column({type: "int"})
   gender: number;

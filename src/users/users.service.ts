@@ -13,8 +13,9 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
+    user.id = createUserDto.id;
     user.phone = createUserDto.phone;
-    user.fullname = createUserDto.fullname;
+    user.username = createUserDto.username;
     user.fullname= createUserDto.fullname;
     user.password= createUserDto.password;
     user.gender= createUserDto.gender;
@@ -34,9 +35,13 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(createUserDto: CreateUserDto): Promise<User> {
-    console.log('createUserDto', createUserDto)
-    return this.usersRepository.findOne(createUserDto);
+  findOne(userFilter: any): Promise<User> {
+    console.log(userFilter);
+    return this.usersRepository.findOne(userFilter);
+  }
+
+  async update(user: any) {
+    return this.usersRepository.save(user);
   }
 
   async remove(id: string): Promise<void> {
